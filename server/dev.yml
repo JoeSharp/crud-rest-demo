@@ -1,0 +1,3 @@
+serverName: "Kryten"
+cors:
+  origins: "*"
