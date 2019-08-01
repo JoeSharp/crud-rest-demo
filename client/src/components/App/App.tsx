@@ -17,13 +17,7 @@ interface AuthorWithHandlers {
 const App: React.FC = () => {
   useEffect(() => setAppElement("body"), []);
 
-  const {
-    serverName,
-    authors,
-    createAuthor,
-    updateAuthor,
-    deleteAuthor
-  } = useServerApi();
+  const { authors, createAuthor, updateAuthor, deleteAuthor } = useServerApi();
   const {
     openDialog: openNewAuthorDialog,
     componentProps: newAuthorDialogProps
@@ -57,8 +51,6 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <h1>CRUD Example Application - Authors</h1>
-      <p>Server Name Is: {serverName}</p>
-      <h2>Authors</h2>
       <table className="table">
         <thead>
           <tr>

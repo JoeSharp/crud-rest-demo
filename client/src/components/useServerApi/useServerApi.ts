@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect, useCallback } from "react";
+import { useReducer, useEffect, useCallback } from "react";
 
 export interface Author {
   id: number;
@@ -7,7 +7,6 @@ export interface Author {
 }
 
 export interface AuthorsApi {
-  serverName: string;
   authors: Author[];
   createAuthor: (author: Author) => void;
   updateAuthor: (author: Author) => void;
@@ -17,7 +16,6 @@ export interface AuthorsApi {
 const serverAddress = "http://localhost:8080";
 
 const baseAuthorUrl = `${serverAddress}/`;
-const getServerNameUrl = `${serverAddress}/serverName`;
 const getAllAuthorsUrl = `${serverAddress}/all`;
 
 interface SetAuthors {
@@ -57,16 +55,8 @@ const reducer = (state: Author[], action: ReducerAction) => {
 };
 
 const useServerApi = (): AuthorsApi => {
-  const [serverName, setServerName] = useState<string>("default");
   const [authors, dispatch] = useReducer(reducer, []);
 
-  const getServerName = useCallback(
-    () =>
-      fetch(getServerNameUrl)
-        .then(r => r.text())
-        .then(setServerName),
-    [setServerName]
-  );
   const getAllAuthors = useCallback(
     () =>
       fetch(getAllAuthorsUrl)
@@ -77,8 +67,7 @@ const useServerApi = (): AuthorsApi => {
 
   useEffect(() => {
     getAllAuthors();
-    getServerName();
-  }, [getServerName, getAllAuthors]);
+  }, [getAllAuthors]);
 
   const createAuthor = useCallback(
     (author: Author) =>
@@ -115,7 +104,6 @@ const useServerApi = (): AuthorsApi => {
   );
 
   return {
-    serverName,
     authors,
     createAuthor,
     updateAuthor,
