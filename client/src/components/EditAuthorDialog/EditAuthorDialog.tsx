@@ -28,13 +28,21 @@ const NewAuthorDialog: React.FC<Props> = ({
   <Modal isOpen={isOpen} onRequestClose={onCancel} contentLabel={subtitle}>
     <h2>{subtitle}</h2>
     <form>
-      <label>First Name</label>
-      <input {...firstName} />
-      <label>Last Name</label>
-      <input {...lastName} />
+      <div className="form-group">
+        <label>First Name</label>
+        <input className="form-control" {...firstName} />
+      </div>
+      <div className="form-group">
+        <label>Last Name</label>
+        <input className="form-control" {...lastName} />
+      </div>
     </form>
-    <button onClick={onConfirm}>Confirm</button>
-    <button onClick={onCancel}>Cancel</button>
+    <button onClick={onConfirm} className="btn btn-primary">
+      Confirm
+    </button>
+    <button onClick={onCancel} className="btn btn-danger">
+      Cancel
+    </button>
   </Modal>
 );
 

@@ -1,10 +1,12 @@
 import React, { useMemo, useEffect } from "react";
+import { setAppElement } from "react-modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import useServerApi from "../useServerApi";
 import { Author } from "../useServerApi/useServerApi";
 import NewAuthorDialog, {
   useDialog as useEditAuthorDialog
 } from "../EditAuthorDialog";
-import { setAppElement } from "react-modal";
 
 interface AuthorWithHandlers {
   author: Author;
@@ -53,11 +55,11 @@ const App: React.FC = () => {
   );
 
   return (
-    <div>
-      Application Goes Here
+    <div className="container">
+      <h1>CRUD Example Application - Authors</h1>
       <p>Server Name Is: {serverName}</p>
       <h2>Authors</h2>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>ID</th>
@@ -78,15 +80,29 @@ const App: React.FC = () => {
                 <td>{firstName}</td>
                 <td>{lastName}</td>
                 <td>
-                  <button onClick={handleUpdate}>Update</button>
-                  <button onClick={handleDelete}>Delete</button>
+                  <div className="btn-group">
+                    <button
+                      onClick={handleUpdate}
+                      className="btn btn-light btn-sm"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={handleDelete}
+                      className="btn btn-light btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             )
           )}
         </tbody>
       </table>
-      <button onClick={openNewAuthorDialog}>Add New Author</button>
+      <button onClick={openNewAuthorDialog} className="btn btn-primary">
+        Add New Author
+      </button>
       <NewAuthorDialog {...updateAuthorDialogProps} />
       <NewAuthorDialog {...newAuthorDialogProps} />
     </div>
