@@ -16,10 +16,8 @@ public class Author {
     public Author() {
     }
 
-    public Author(final Integer id,
-                  final String firstName,
+    public Author(final String firstName,
                   final String lastName) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
