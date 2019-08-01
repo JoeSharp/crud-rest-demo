@@ -1,3 +1,0 @@
-serverName: "Kryten"
-cors:
-  origins: "*"
